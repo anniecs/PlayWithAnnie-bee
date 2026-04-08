@@ -12,13 +12,13 @@
             --bee-gold: #d4a017;
         }
         
-        /* 穩定的 SVG 蜜蜂游標 */
+        /* 1. 穩定的 SVG 蜜蜂游標 */
         * {
             cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'><circle cx='16' cy='20' r='7' fill='%23FFD700' stroke='%23000' stroke-width='1'/><rect x='11' y='17' width='10' height='2' fill='%23000'/><rect x='11' y='21' width='10' height='2' fill='%23000'/><path d='M16 13C13 10 10 13 12 16M16 13C19 10 22 13 20 16' stroke='%23AAA' fill='%23FFF' fill-opacity='0.6'/><circle cx='14' cy='18' r='1' fill='%23000'/><circle cx='18' cy='18' r='1' fill='%23000'/></svg>") 16 16, auto;
         }
 
         body {
-            font-family: "Microsoft JhengHei", sans-serif;
+            font-family: "Microsoft JhengHei", "PingFang TC", sans-serif;
             background-color: var(--bee-light);
             display: flex; justify-content: center; padding: 20px; color: var(--bee-brown);
             -webkit-tap-highlight-color: transparent; user-select: none;
@@ -26,39 +26,64 @@
 
         .container {
             background: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            max-width: 650px; width: 100%; border: 4px solid var(--bee-yellow);
+            max-width: 650px; width: 100%; border: 4px solid var(--bee-yellow); position: relative;
         }
         
         h1 { text-align: center; color: var(--bee-gold); margin-top: 0; font-size: 1.6rem; }
+
         .intro-text { text-align: center; line-height: 1.8; margin-bottom: 25px; font-size: 1.1rem; }
-        .question-container { display: flex; align-items: flex-start; margin-bottom: 25px; gap: 10px; background: #fffef0; padding: 15px; border-radius: 10px; }
+        
+        .question-container {
+            display: flex; align-items: flex-start; margin-bottom: 25px; gap: 10px;
+            background: #fffef0; padding: 15px; border-radius: 10px;
+        }
         .question { font-size: 1.25rem; font-weight: bold; line-height: 1.5; flex: 1; }
+
         .options { display: grid; gap: 15px; }
         .opt-wrapper { display: flex; align-items: center; gap: 10px; }
         
         .option-btn {
-            flex: 1; padding: 15px; border: 2px solid var(--bee-yellow); background-color: #ffffff !important;
-            color: var(--bee-brown); border-radius: 12px; font-size: 1.1rem; text-align: left; transition: all 0.2s;
+            flex: 1; padding: 15px; border: 2px solid var(--bee-yellow);
+            background-color: #ffffff !important; color: var(--bee-brown);
+            border-radius: 12px; font-size: 1.1rem; text-align: left; 
+            transition: all 0.2s; outline: none; -webkit-appearance: none;
         }
 
-        .selected-ans { background-color: var(--bee-brown) !important; color: var(--bee-yellow) !important; border-color: var(--bee-brown) !important; }
-        .voice-btn { background: white; border: 2px solid #eee; border-radius: 50%; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; }
+        /* 點選答案時的深色回饋 */
+        .selected-ans {
+            background-color: var(--bee-brown) !important;
+            color: var(--bee-yellow) !important;
+            border-color: var(--bee-brown) !important;
+        }
+
+        .voice-btn {
+            background: white; border: 2px solid #eee; border-radius: 50%;
+            width: 44px; height: 44px; display: flex; align-items: center;
+            justify-content: center; font-size: 20px; flex-shrink: 0;
+        }
+
         .hidden { display: none !important; }
         .progress { text-align: right; font-size: 1rem; color: #666; margin-bottom: 10px; font-weight: bold; }
+        
         .total-score { font-size: 2.5rem; color: #e67e22; text-align: center; margin: 10px 0; font-weight: 900; }
         
         .leaderboard-box { margin-top: 20px; border: 2px solid var(--bee-yellow); border-radius: 15px; overflow: hidden; }
         .rank-table { width: 100%; border-collapse: collapse; background: white; font-size: 0.9rem; }
         .rank-table th { background: var(--bee-yellow); padding: 10px; }
         .rank-table td { padding: 10px; text-align: center; border-bottom: 1px solid #eee; }
+        .my-rank { background: #fff4d1; font-weight: bold; }
 
         .nickname-box { text-align: center; margin: 20px 0; padding: 20px; background: #fffdf0; border: 2px dashed var(--bee-gold); border-radius: 15px; }
-        input[type="text"] { padding: 12px; border: 2px solid var(--bee-yellow); border-radius: 8px; width: 60%; outline: none; }
+        input[type="text"] { padding: 12px; border: 2px solid var(--bee-yellow); border-radius: 8px; font-size: 1rem; width: 60%; outline: none; }
 
-        .btn-main { width: 100%; background: var(--bee-yellow); color: var(--bee-brown); font-weight: bold; padding: 18px; border: none; border-radius: 10px; font-size: 1.2rem; margin-top: 15px; }
+        .btn-main { 
+            width: 100%; background: var(--bee-yellow); color: var(--bee-brown);
+            font-weight: bold; padding: 18px; border: none; border-radius: 10px; 
+            font-size: 1.2rem; margin-top: 15px;
+        }
+
         .wrong-item { background: #fff0f0; padding: 15px; margin-bottom: 12px; border-left: 5px solid #ff4d4d; border-radius: 8px; font-size: 0.95rem; }
         .page-tag { display: inline-block; background: #555; color: white; padding: 2px 8px; border-radius: 4px; font-size: 0.8rem; margin-bottom: 5px; }
-        #loading-msg { color: #e67e22; font-weight: bold; }
     </style>
 </head>
 <body>
@@ -68,7 +93,8 @@
         <h1>🐝 蜜蜂知識大挑戰</h1>
         <div class="intro-text">
             跟著 <strong>Annie</strong> 一起認識蜜蜂<br>
-            可搭配康軒學習雜誌學前版 <strong>2026 年 4 月份</strong> 一起玩樂
+            可搭配康軒學習雜誌學前版 <strong>2026 年 4 月份</strong> 一起玩樂<br>
+            <span style="color: #888; font-size: 0.95rem;">(按喇叭圖示會有聲音唷)</span>
         </div>
         <button class="btn-main" onclick="startQuiz()">開始隨機測驗</button>
     </div>
@@ -77,7 +103,7 @@
         <div class="progress" id="progress">問題 1 / 10</div>
         <div class="question-container">
             <div class="question" id="question-text"></div>
-            <button class="voice-btn" id="q-voice">📢</button>
+            <button class="voice-btn" id="q-voice" title="聽題目">📢</button>
         </div>
         <div id="options-bin" class="options"></div>
     </div>
@@ -85,17 +111,18 @@
     <div id="result-area" class="hidden">
         <h1>🐝 蜜蜂知識大挑戰</h1>
         <div class="total-score" id="score-display">0 / 100 分</div>
-        <p id="time-display" style="text-align: center; color: #666;"></p>
+        <p id="time-display" style="text-align: center; color: #666; font-weight: bold;"></p>
         
         <div id="nickname-area" class="nickname-box">
-            <p>🌟 登錄成績到全球排行榜：</p>
-            <input type="text" id="nickname-input" placeholder="輸入暱稱" maxlength="8">
-            <button id="submit-btn" onclick="submitToGoogle()" style="padding: 12px; background: var(--bee-brown); color: white; border: none; border-radius: 8px;">送出</button>
-            <p id="loading-msg" class="hidden">資料傳輸中，請稍候...</p>
+            <p style="margin-top:0;">🌟 考得太棒了！請輸入暱稱來記錄你的排名：</p>
+            <input type="text" id="nickname-input" placeholder="你的名字" maxlength="8">
+            <button id="submit-btn" onclick="submitToGoogle()" style="padding: 12px 20px; background: var(--bee-brown); color: white; border: none; border-radius: 8px; margin-top:10px;">送出並查看排行</button>
+            <p id="loading-msg" class="hidden" style="color: #e67e22;">資料上傳中，請稍候...</p>
         </div>
 
         <div id="leaderboard-section" class="hidden">
-            <h3 style="text-align: center;">🏆 全球前十名龍虎榜</h3>
+            <h3 style="text-align: center; color: var(--bee-brown);">🏆 全球前十名龍虎榜</h3>
+            <div id="my-rank-info" style="text-align: center; color: #d4a017; font-weight: bold; margin-bottom: 10px;"></div>
             <div class="leaderboard-box">
                 <table class="rank-table">
                     <thead><tr><th>名次</th><th>暱稱</th><th>分數</th><th>時間</th></tr></thead>
@@ -105,28 +132,40 @@
         </div>
 
         <div id="wrong-book" class="hidden" style="margin-top: 30px;">
-            <h3>📖 錯題複習本</h3>
+            <h3 style="border-bottom: 2px solid #ff4d4d; padding-bottom: 5px;">📖 錯題複習本</h3>
             <div id="wrong-list"></div>
         </div>
+        
         <button class="btn-main" onclick="location.reload()">再玩一次</button>
     </div>
 </div>
 
 <script>
-    // 【重要】請在此處替換成你的 Google Apps Script URL
-    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxTv9_0AEURe-GfFxSVm9sCHA5ZCjWs-cUI8uD9vx_-E3v36V1Nt5-6vBiI-FsIT3kx2g/exec";
+    // 【重要】填入你的 Google Apps Script 網址
+     const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxTv9_0AEURe-GfFxSVm9sCHA5ZCjWs-cUI8uD9vx_-E3v36V1Nt5-6vBiI-FsIT3kx2g/exec";
 
+    // 總題庫：20 題
     const fullPool = [
-        { q: "蜜蜂在哪個季節最活躍，會飛到處採花蜜？", a: ["春天", "夏天", "冬天"], c: "春天", p: "p.6-7" },
+        { q: "蜜蜂在哪個季節最活躍，會忙著採花蜜？", a: ["春天", "夏天", "冬天"], c: "春天", p: "p.6-7" },
         { q: "養蜂人為蜜蜂打造的「家」稱為什麼？", a: ["花蜜袋", "蜂箱", "小樹洞"], c: "蜂箱", p: "p.6-7" },
-        { q: "蜜蜂是使用什麼部位來吸食花蜜的？", a: ["翅膀", "腳", "口器"], c: "口器", p: "p.8-9" },
-        { q: "蜜蜂採到的花蜜，會先儲存在身體哪個部位？", a: ["蜜囊", "胃部", "口袋"], c: "蜜囊", p: "p.8-9" },
-        { q: "為什麼不同瓶蜂蜜的顏色和味道會不一樣？", a: ["加了色素", "採集的鮮花種類不同", "蜜蜂心情不同"], c: "採集的鮮花種類不同", p: "p.8-9" },
-        { q: "蜂巢裡一格一格的小房間是什麼形狀的？", a: ["圓形", "三角形", "六角形"], c: "六角形", p: "p.10-11" },
-        { q: "蜂巢的小房間除了放蜂蜜，還用來放什麼？", a: ["幼蟲", "泥土", "石頭"], c: "幼蟲", p: "p.10-11" },
-        { q: "養蜂人採收前，會用什麼工具讓蜜蜂冷靜？", a: ["噴煙器", "噴水池", "音樂盒"], c: "噴煙器", p: "p.10-11" },
-        { q: "如何將蜂巢片裡的蜂蜜取出來？", a: ["用嘴巴吸", "放入脫蜜機旋轉", "用火烤"], c: "放入脫蜜機旋轉", p: "p.10-11" },
-        { q: "回到蜂箱後，採蜜蜂會把花蜜吐給誰？", a: ["蜂王", "另一隻蜜蜂", "養蜂人"], c: "另一隻蜜蜂", p: "p.8-9" }
+        { q: "養蜂人通常會帶著蜂箱到什麼樣的地方？", a: ["開滿花的地方", "百貨公司", "大馬路邊"], c: "開滿花的地方", p: "p.6-7" },
+        { q: "蜜蜂什麼時候會在蜂箱裡休息？", a: ["白天", "晚上", "中午"], c: "晚上", p: "p.6-7" },
+        { q: "蜜蜂是用什麼部位來吸取花蜜的？", a: ["口器", "翅膀", "腳"], c: "口器", p: "p.8-9" },
+        { q: "蜜蜂採到的花蜜會儲存在哪裡帶回去？", a: ["蜜囊", "書包", "嘴巴"], c: "蜜囊", p: "p.8-9" },
+        { q: "蜜囊大約位在蜜蜂身體的哪個位置？", a: ["頭部", "腰部", "翅膀上"], c: "腰部", p: "p.8-9" },
+        { q: "採蜜蜂回到巢中會把花蜜吐給誰？", a: ["蜂王", "另一隻蜜蜂", "養蜂人"], c: "另一隻蜜蜂", p: "p.8-9" },
+        { q: "為什麼市面上蜂蜜的味道和顏色會不一樣？", a: ["採集的鮮花種類不同", "加了色素", "蜜蜂心情不同"], c: "採集的鮮花種類不同", p: "p.8-9" },
+        { q: "蜂巢是由什麼形狀的小房間組成的？", a: ["圓形", "三角形", "六角形"], c: "六角形", p: "p.10-11" },
+        { q: "蜂巢的小房間除了放蜂蜜，還會放什麼？", a: ["幼蟲", "泥土", "石頭"], c: "幼蟲", p: "p.10-11" },
+        { q: "採收蜂蜜前，養蜂人會用什麼讓蜜蜂冷靜？", a: ["噴煙器", "噴水池", "音樂盒"], c: "噴煙器", p: "p.10-11" },
+        { q: "採收時用什麼工具輕輕趕走蜂巢上的蜜蜂？", a: ["刷子", "扇子", "吸塵器"], c: "刷子", p: "p.10-11" },
+        { q: "用什麼機器可以把蜂巢裡的蜂蜜甩出來？", a: ["脫蜜機", "洗衣機", "烤箱"], c: "脫蜜機", p: "p.10-11" },
+        { q: "脫蜜機是利用什麼原理甩出蜂蜜？", a: ["高速旋轉", "加熱蒸發", "浸泡"], c: "高速旋轉", p: "p.11" },
+        { q: "蜜蜂如何讓花蜜中的水分蒸發，變濃稠？", a: ["扇動翅膀", "太陽曬", "用火烤"], c: "扇動翅膀", p: "p.11" },
+        { q: "蜂箱裡的蜂蜜是誰努力工作的成果？", a: ["只有蜂王", "所有蜜蜂", "只有雄蜂"], c: "所有蜜蜂", p: "p.11" },
+        { q: "蜜蜂採集回來的花蜜最後存放在哪裡？", a: ["蜂巢的小房間", "蜂箱底層", "花朵裡"], c: "蜂巢的小房間", p: "p.9" },
+        { q: "蜜蜂採蜜時，還會順便收集什麼當食物？", a: ["花粉", "樹葉", "小石子"], c: "花粉", p: "p.11" },
+        { q: "蜂巢的小房間排列在一起看起來像什麼？", a: ["一片片的蜂巢", "一根根的小柱子", "一朵朵的花"], c: "一片片的蜂巢", p: "p.10" }
     ];
 
     let testQuestions = [], currentIdx = 0, score = 0, userWrongs = [];
@@ -151,6 +190,7 @@
         startTime = new Date();
         let poolCopy = [...fullPool];
         shuffle(poolCopy);
+        // 每次挑選 10 題
         testQuestions = poolCopy.slice(0, 10);
         document.getElementById("start-screen").classList.add("hidden");
         document.getElementById("quiz-ui").classList.remove("hidden");
@@ -159,6 +199,7 @@
 
     function loadQuestion() {
         isProcessing = false;
+        if (document.activeElement) document.activeElement.blur();
         if (currentIdx >= testQuestions.length) {
             finishQuiz();
             return;
@@ -168,7 +209,8 @@
         document.getElementById("question-text").innerText = qData.q;
         document.getElementById("q-voice").onclick = () => speak(qData.q);
         
-        let opts = [...qData.a]; shuffle(opts);
+        let opts = [...qData.a]; 
+        shuffle(opts);
         const bin = document.getElementById("options-bin");
         bin.innerHTML = "";
         
@@ -183,13 +225,16 @@
                 if (optText === qData.c) { score++; } 
                 else { userWrongs.push({ q: qData.q, c: qData.c, u: optText, p: qData.p }); }
                 currentIdx++;
+                // 停留 0.5 秒換題
                 setTimeout(loadQuestion, 500);
             };
+
             const wrapper = document.createElement("div");
             wrapper.className = "opt-wrapper";
             const vBtn = document.createElement("button");
             vBtn.className = "voice-btn"; vBtn.innerHTML = "📢";
-            vBtn.onclick = (e) => { e.stopPropagation(); speak(optText); };
+            vBtn.onclick = (e) => { e.stopPropagation(); speak(optText); this.blur(); };
+            
             wrapper.appendChild(btn); wrapper.appendChild(vBtn);
             bin.appendChild(wrapper);
         });
@@ -200,7 +245,7 @@
         document.getElementById("quiz-ui").classList.add("hidden");
         document.getElementById("result-area").classList.remove("hidden");
         document.getElementById("score-display").innerText = `${score * 10} / 100 分`;
-        document.getElementById("time-display").innerText = `耗時：${totalTimeSec} 秒`;
+        document.getElementById("time-display").innerText = `完成耗時：${totalTimeSec} 秒`;
 
         if (userWrongs.length > 0) {
             document.getElementById("wrong-book").classList.remove("hidden");
@@ -209,43 +254,45 @@
             userWrongs.forEach(item => {
                 const div = document.createElement("div");
                 div.className = "wrong-item";
-                div.innerHTML = `<span class="page-tag">雜誌 ${item.p}</span><br><strong>問：</strong>${item.q}<br>✅ 正確答案：${item.c}`;
+                div.innerHTML = `<span class="page-tag">出自雜誌 ${item.p}</span><br>
+                                 <strong>問：</strong>${item.q}<br>❌ 你的答案：${item.u}<br>✅ 正確答案：<span class="correct-ans" style="color:#2ecc71; font-weight:bold;">${item.c}</span>`;
                 list.appendChild(div);
             });
         }
     }
 
-    // 串接 Google Sheet 功能
     async function submitToGoogle() {
-        const name = document.getElementById("nickname-input").value.trim() || "匿名";
+        const name = document.getElementById("nickname-input").value.trim() || "小蜜蜂";
         const finalScore = score * 10;
         
         document.getElementById("loading-msg").classList.remove("hidden");
         document.getElementById("submit-btn").disabled = true;
 
         try {
-            // 儲存
+            // 1. 上傳成績
             await fetch(`${SCRIPT_URL}?action=save&name=${encodeURIComponent(name)}&score=${finalScore}&time=${totalTimeSec}`, { mode: 'no-cors' });
             
-            // 讀取排行榜
+            // 2. 獲取排行榜
             const response = await fetch(`${SCRIPT_URL}?action=get`);
             const boardData = await response.json();
             
-            displayLeaderboard(boardData);
+            displayLeaderboard(boardData, name);
         } catch (err) {
-            alert("排行榜讀取失敗，請確認你的 SCRIPT_URL 是否正確，且已部署為任何人可存取。");
+            alert("排行榜連接失敗，請確認你的 SCRIPT_URL 是否正確且已部署。");
         } finally {
             document.getElementById("loading-msg").classList.add("hidden");
             document.getElementById("nickname-area").classList.add("hidden");
         }
     }
 
-    function displayLeaderboard(data) {
+    function displayLeaderboard(data, currentName) {
         document.getElementById("leaderboard-section").classList.remove("hidden");
         const body = document.getElementById("rank-body");
         body.innerHTML = "";
+        
         data.forEach((row, idx) => {
             const tr = document.createElement("tr");
+            if (row[0] === currentName) tr.className = "my-rank";
             tr.innerHTML = `<td>${idx + 1}</td><td>${row[0]}</td><td>${row[1]}</td><td>${row[2]}s</td>`;
             body.appendChild(tr);
         });
